@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import fetcher from '../api/config';
 
-const Login = () => {
-  const [user,setUser]=useState(" ");
- 
-  const {register,handleSubmit,reset}=useForm();
-  const onSubmit = async(data)=>{
-    const res = await fetcher.post('login',data);
-    setUser(res.data.result);
-    // reset()
-  }
-  // useEffect(()=>{
-    if(user === 'valid'){
-      return <Navigate to='/'/>
-    }
-// },[user])
+const SignUp = () => {
+    const {register,handleSubmit,reset}=useForm();
+    const onSubmit = async(data)=>{
+      const res = await fetcher.post('register',data);
+      console.log(res);
+      reset()
+     }
     return (
         <div class="flex justify-center bg-accent items-center h-screen">
   <div class="hero-content flex-col lg:flex-row-reverse">
     
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <div class="card-body">
-        <h1 className='text-2xl text-center'>Login</h1>
+        <h1 className='text-2xl text-center'>Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
         <div class="form-control">
           <label class="label">
@@ -36,16 +29,19 @@ const Login = () => {
             <span class="label-text">Password</span>
           </label>
           <input type="text" {...register('password')}  class="input input-bordered" />
+        </div>
+        <div class="form-control">
           <label class="label">
-            <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+            <span class="label-text">Confirm Password</span>
           </label>
+          <input type="text"  class="input input-bordered" />
         </div>
         <div class="form-control mt-6">
-          <button type='submit' class="btn btn-primary">Login</button>
+          <button type='submit' class="btn btn-primary">Sign Up</button>
         </div>
         <div>
-          <small>New at Clean Co? Please
-            <Link to='/signup'> SignUp</Link>
+          <small>Already have an account? Please
+            <Link to='/login'> Log In</Link>
           </small>
         </div>
       </form>
@@ -58,4 +54,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
