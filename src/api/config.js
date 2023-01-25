@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const fetcher = axios.create({
-    baseURL: 'https://form-input-data.onrender.com/'
+    baseURL: 'https://form-data-serer-site.onrender.com/'
   });
 
   export default fetcher;
